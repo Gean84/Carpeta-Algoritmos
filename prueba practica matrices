@@ -1,0 +1,75 @@
+import numpy as np
+
+datos_juegos = [
+    ["Nombre", "Jugadores Actuales", "Jugadores Pico", "Horas Jugadas"],
+    ["Counter-Strike 2", 1277703, 1588091, 701496776],
+    ["Dota 2", 700082, 858940, 398506833],
+    ["PUBG: BATTLEGROUNDS", 586964, 750442, 196714293],
+    ["Battlefield™ 6", 258838, 656067, 172888558],
+    ["Escape from Duckov", 214875, 301322, 49695799],
+]
+
+
+
+def buscar_juego(matriz, nombre_buscado):
+   
+    
+    for fila in matriz[1:]: #
+        nombre = fila[0]
+        if nombre.lower() == nombre_buscado.lower():
+            return fila
+    return None
+
+
+
+def mostrar_top(matriz):
+    print(" TOP JUEGOS")
+    encabezado = matriz[0]
+
+    for fila in matriz[1:]:
+        for i in range(len(encabezado)):
+            print(f"{encabezado[i]}: {fila[i]}")
+       
+
+
+
+
+
+
+def menu():
+    while True:
+        
+        print(" MENÚ PRINCIPAL")
+        print("1. Ver todos los juegos")
+        print("2. Buscar un juego")
+        print("3. Gráfico de barras")
+        print("4. Salir")
+
+        opcion = input("Elige una opción: ")
+
+        if opcion == "1":
+            mostrar_top(datos_juegos)
+
+        elif opcion == "2":
+            nombre = input("Ingresa el nombre del juego: ")
+            resultado = buscar_juego(datos_juegos, nombre)
+
+            if resultado:
+                print("\n¡Juego encontrado!")
+                for i, dato in enumerate(datos_juegos[0]):
+                    print(f"{dato}: {resultado[i]}")
+            else:
+                print("No se encontró ese juego.")
+
+     
+
+        elif opcion == "4":
+            print("¡Hasta la próxima!")
+            break
+
+        else:
+            print("Opción inválida.")
+
+
+
+menu()
